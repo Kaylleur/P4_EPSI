@@ -13,6 +13,8 @@ Composition du groupe :
 *********************************
 
 *********************************
+
+![GitHub Logo](http://zupimages.net/up/15/15/vqp8.jpg)
 DESCRIPTION DU JEU :
 
 Le puissance 4 est un jeu de société qui possède un but très simple.
@@ -31,6 +33,8 @@ CONDITION DE VICTOIRE :
 
 Pour gagner une partie, un joueur doit aligner 4 jetons de sa couleure.
 L'alignement peut être fait en vertical, en horizontal  ou bien même en diagonal
+
+![GitHub Logo](http://www.zupimages.net/up/15/15/d6e3.png)
 
 
 *********************************
