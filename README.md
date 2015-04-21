@@ -35,7 +35,7 @@ Le modèle officiel comporte donc 21 jetons jaune et 21 jetons rouge.
 Pour gagner une partie, un joueur doit aligner 4 jetons de sa couleure.
 L'alignement peut être fait en vertical, en horizontal  ou bien même en diagonal
 
-![alignement Logo](http://www.zupimages.net/up/15/15/d6e3.png)
+![condition_victoire](http://aispirit.tuxfamily.org/~articles/articles/puiss4/puiss02.gif)
 
 
 *********************************
