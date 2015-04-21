@@ -48,3 +48,6 @@ Celui­ci met un de ses jetons de couleur dans l’une des colonnes de son choix
 Le deuxième joueur insère à son tour son jeton, de l’autre couleur dans la colonne de son choix. Et ainsi de suite jusqu’à obtenir une rangée de 4 jetons de même couleur.
 
 Si lors d’une partie, tous les jetons sont joués sans qu’il y est d’alignement de jetons, la partie est déclaré nulle.
+
+
+[Lien vers le wiki](https://github.com/Kaylleur/P4_EPSI/wiki)
