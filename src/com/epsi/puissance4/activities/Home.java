@@ -1,7 +1,8 @@
-package com.epsi.puissance4;
+package com.epsi.puissance4.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
+import com.epsi.puissance4.R;
 
 public class Home extends Activity {
     /**
