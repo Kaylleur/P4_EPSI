@@ -22,7 +22,7 @@ public class World {
 
     public static World get(){
         if(instance==null){
-            //TODO voir pour différente taille
+            //TODO voir pour différentes tailles
             instance = new World(6,7);
         }
         return instance;
@@ -34,5 +34,11 @@ public class World {
 
     public int getHeight() {
         return height;
+    }
+
+    public boolean checkVictory(Space spaceInit){
+        boolean res = false;
+
+        return res;
     }
 }
