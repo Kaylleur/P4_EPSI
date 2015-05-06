@@ -3,19 +3,25 @@ package com.epsi.puissance4.models;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Thomas on 21/04/2015.
- */
 public class Player {
     public static List<Player> players = new ArrayList<Player>();
     private Integer id;
     private String pseudo;
     private Level level = Level.NO;
+    private List<Token> tokens = new ArrayList<Token>();
 
-    public Player() {
+    public Player(Color color) {
         players.add(this);
         this.id = players.size();
         this.pseudo = "Player "+id;
+        initTokens(color);
+    }
+    public void initTokens(Color color){
+        for (int i=0; i < 21;i++){
+            Token token = new Token(color);
+            tokens.add(token);
+        }
+
     }
 
     public Level getLevel() {
@@ -32,5 +38,12 @@ public class Player {
 
     public String getPseudo() {
         return pseudo;
+    }
+
+    public void placeToken(int y){
+        Space space = World.getWorld().getNextSpaceAvailable(y);
+        Token token = tokens.get(tokens.size()-1);
+        space.setContent(token);
+        tokens.remove(token);
     }
 }
