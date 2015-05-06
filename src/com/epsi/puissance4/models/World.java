@@ -41,4 +41,8 @@ public class World {
 
         return res;
     }
+
+    public Space[][] getSpaces() {
+        return spaces;
+    }
 }

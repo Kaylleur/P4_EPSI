@@ -10,7 +10,7 @@ public class Space {
     private static List<Space> spaces;
     private int x;
     private int y;
-    private Token Content = null;
+    private Token content = null;
     private int id;
 
     public Space(int x, int y) {
@@ -29,7 +29,7 @@ public class Space {
     }
 
     public Token getContent() {
-        return Content;
+        return content;
     }
 
     public int getId() {
@@ -37,6 +37,10 @@ public class Space {
     }
 
     public void setContent(Token content) {
-        Content = content;
+        this.content = content;
+    }
+
+    public boolean isAvailable(){
+        return content == null;
     }
 }

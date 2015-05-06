@@ -1,12 +1,13 @@
 package com.epsi.puissance4.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Thomas on 21/04/2015.
  */
 public class Player {
-    public static List<Player> players;
+    public static List<Player> players = new ArrayList<Player>();
     private Integer id;
     private String pseudo;
     private Level level = Level.NO;
