@@ -1,23 +1,22 @@
 package com.epsi.puissance4.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Thomas on 21/04/2015.
- */
+
 public class Space {
 
-    private static List<Space> spaces;
+    private static List<Space> spaces = new ArrayList<Space>();
     private int x;
     private int y;
-    private Token Content = null;
+    private Token content = null;
     private int id;
 
     public Space(int x, int y) {
-        spaces.add(this);
         this.x = x;
         this.y = y;
         this.id = spaces.size();
+        spaces.add(this);
     }
 
     public int getX() {
@@ -29,7 +28,7 @@ public class Space {
     }
 
     public Token getContent() {
-        return Content;
+        return content;
     }
 
     public int getId() {
@@ -37,6 +36,10 @@ public class Space {
     }
 
     public void setContent(Token content) {
-        Content = content;
+        content = content;
+    }
+
+    public boolean isAvailable(){
+        return this.getContent() == null;
     }
 }
