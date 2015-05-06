@@ -63,8 +63,22 @@ public class World {
         System.out.println("---------------------------------");
     }
 
+    public Space[][] getSpaces() {
+        return spaces;
+    }
+
+    public void setSpaces(Space[][] spaces) {
+        this.spaces = spaces;
+    }
+
+
+    public void setSpaceContent(Space space){
+        this.spaces[space.getX()][space.getY()].setContent(space.getContent());
+    }
+
     public Space getNextSpaceAvailable(int y){
         Space currentSpace = World.getWorld().spaces[0][y];
+
         for (int h = 0; h < height; h++) {
             if(currentSpace.getContent() != null){
                 currentSpace = this.getNextSpace(currentSpace);

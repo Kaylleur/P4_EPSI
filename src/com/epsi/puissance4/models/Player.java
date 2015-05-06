@@ -44,6 +44,7 @@ public class Player {
         Space space = World.getWorld().getNextSpaceAvailable(y);
         Token token = tokens.get(tokens.size()-1);
         space.setContent(token);
+        World.getWorld().setSpaceContent(space);
         tokens.remove(token);
     }
 }
