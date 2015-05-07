@@ -8,7 +8,7 @@ public class Player {
     private Integer id;
     private String pseudo;
     private Level level = Level.NO;
-    private List<Token> tokens = new ArrayList<Token>();
+    protected List<Token> tokens = new ArrayList<Token>();
 
     public Player(Color color) {
         players.add(this);
@@ -16,12 +16,12 @@ public class Player {
         this.pseudo = "Player "+id;
         initTokens(color);
     }
+
     public void initTokens(Color color){
         for (int i=0; i < 21;i++){
-            Token token = new Token(color);
+            Token token = new Token(color,this);
             tokens.add(token);
         }
-
     }
 
     public Level getLevel() {
@@ -41,9 +41,13 @@ public class Player {
     }
 
     public void placeToken(int y){
-        Space space = World.getWorld().getNextSpaceAvailable(y);
+        Space space = World.getInstance().getNextSpaceAvailable(y);
         Token token = tokens.get(tokens.size()-1);
         space.setContent(token);
         tokens.remove(token);
+    }
+
+    public List<Token> getTokens() {
+        return tokens;
     }
 }
