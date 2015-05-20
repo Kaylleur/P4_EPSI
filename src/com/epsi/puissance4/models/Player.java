@@ -16,6 +16,9 @@ public class Player {
         this.pseudo = "Player "+id;
         initTokens(color);
     }
+
+    public Player() {}
+
     public void initTokens(Color color){
         for (int i=0; i < 21;i++){
             Token token = new Token(color);
@@ -40,11 +43,10 @@ public class Player {
         return pseudo;
     }
 
-    public void placeToken(int y){
-        Space space = World.getWorld().getNextSpaceAvailable(y);
+    public void placeToken(int x){
+        Space space = World.getInstance().getSpaceAvailable(x);
         Token token = tokens.get(tokens.size()-1);
-        space.setContent(token);
-        World.getWorld().setSpaceContent(space);
+        World.getInstance().getSpaces()[x][space.getY()].setContent(token);
         tokens.remove(token);
     }
 }

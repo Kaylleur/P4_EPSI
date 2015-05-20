@@ -27,10 +27,10 @@ public class World {
         }
     }
 
-    public static World getWorld(){
+    public static World getInstance(){
         if(instance==null){
             //TODO voir pour différentes tailles
-            instance = new World(6,7);
+            instance = new World(7,6);
         }
         return instance;
     }
@@ -43,15 +43,28 @@ public class World {
         return height;
     }
 
-    public boolean checkVictory(Space spaceInit){
-        boolean res = false;
+    public boolean checkVictory(Space lastSpace){
+        if(checkRow(lastSpace)|| checkColumn(lastSpace) || checkDiagonal(lastSpace)){
+            return true;
+        }
+        return false;
+    }
 
-        return res;
+    private boolean checkRow(Space lastSpace) {
+        return false;
+    }
+
+    private boolean checkColumn(Space lastSpace) {
+        return false;
+    }
+
+    private boolean checkDiagonal(Space lastSpace) {
+        return false;
     }
 
     public void displayWorld(){
-        for (int w = 0; w < width; w++) {
-            for (int h = 0; h < height; h++) {
+        for (int h = height-1; h > 0; h--) {
+            for (int w = width-1; w > 0 ; w--) {
                 if(spaces[w][h].getContent() == null){
                     System.out.print(" X ");
                 } else {
@@ -71,24 +84,26 @@ public class World {
         this.spaces = spaces;
     }
 
+    public Space getSpaceAvailable(int x){
+        int y = 0;
+        Space currentSpace = World.getInstance().spaces[x][y];
 
-    public void setSpaceContent(Space space){
-        this.spaces[space.getX()][space.getY()].setContent(space.getContent());
-    }
-
-    public Space getNextSpaceAvailable(int y){
-        Space currentSpace = World.getWorld().spaces[0][y];
-
-        for (int h = 0; h < height; h++) {
-            if(currentSpace.getContent() != null){
-                currentSpace = this.getNextSpace(currentSpace);
-            }
+        if (currentSpace.getContent() == null) {
             return currentSpace;
         }
-        return null;
+
+        while(currentSpace.getContent() != null || y < height){
+            currentSpace = this.getNextSpace(x, y);
+            y++;
+        }
+
+        return currentSpace;
     }
 
-    public Space getNextSpace(Space space){
-        return World.getWorld().spaces[space.getX()+1][space.getY()];
+    public Space getNextSpace(int x, int y){
+        if(World.getInstance().spaces[x][y] !=  null){
+          return World.getInstance().spaces[x][y];
+        }
+        return null;
     }
 }

@@ -15,7 +15,7 @@ public class Computer extends Player {
         int tmp = 0;
         Space bestSpace;
 
-        World world = World.get();
+        World world = World.getInstance();
 
         for(int i = 0;i<world.getWidth();i++){
             for(int j = 0;j<world.getHeight();j++){
