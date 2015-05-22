@@ -1,9 +1,9 @@
 package com.epsi.puissance4.models;
 
 
-public class World {
+public class World implements Cloneable{
 
-    public static World instance;
+    private static World instance;
     public Space[][] spaces;
     public int width;
     public int height;
@@ -29,7 +29,7 @@ public class World {
 
     public static World getInstance(){
         if(instance==null){
-            //TODO voir pour différentes tailles
+            /** TODO voir pour différentes tailles **/
             instance = new World(7,6);
         }
         return instance;
@@ -45,17 +45,56 @@ public class World {
 
     public boolean checkVictory(Space lastSpace){
         if(checkRow(lastSpace)|| checkColumn(lastSpace) || checkDiagonal(lastSpace)){
+            System.out.println("victory vertical !!");
             return true;
         }
         return false;
     }
 
     private boolean checkRow(Space lastSpace) {
-        return false;
+        int lastSpaceX = lastSpace.getX();
+        int lastSpaceY = lastSpace.getY();
+        String color = lastSpace.getContent().color.toString();
+        int countTokenAlign;
+
+        int y = lastSpaceY;
+        int i = 0;
+
+
+        return  true;
+
     }
 
     private boolean checkColumn(Space lastSpace) {
-        return false;
+        int lastSpaceX = lastSpace.getX();
+        int lastSpaceY = lastSpace.getY();
+        String color = lastSpace.getContent().color.toString();
+        boolean[] check = new boolean[4];
+
+        int y = lastSpaceY;
+        int i = 0;
+
+        if(y < 4){
+            return false;
+        }
+
+        while(y > lastSpaceY-4){
+          check[i] = isSameColor(color, spaces[lastSpaceX][y].getContent().getColor().toString());
+          y--;
+          i++;
+        }
+
+        for (int j = 0; j < 3; j++) {
+            if(check[j] == false){
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private boolean isSameColor(String lastSpaceColor, String otherColor){
+        return lastSpaceColor == otherColor;
     }
 
     private boolean checkDiagonal(Space lastSpace) {
@@ -63,14 +102,17 @@ public class World {
     }
 
     public void displayWorld(){
-        for (int h = height-1; h > 0; h--) {
-            for (int w = width-1; w > 0 ; w--) {
-                if(spaces[w][h].getContent() == null){
-                    System.out.print(" X ");
+        for (int h = height-1; h >= 0; h--) {
+            for (int w = width-1; w >= 0; w--) {
+                if(spaces[w][h].isAvailable()){
+                    System.out.print(" x ");
                 } else {
-                    System.out.print(" " + spaces[w][h].getContent().getColor() + " ");
+                    String col = spaces[w][h].getContent().getColor().toString();
+                    col = col == "YELLOW" ? "Y": "R";
+                    System.out.print(" " + col + " ");
                 }
-            }
+               // System.out.println("w "+ w + "h " + h + " content " + spaces[w][h].getContent());
+        }
             System.out.print("\n");
         }
         System.out.println("---------------------------------");
@@ -84,26 +126,59 @@ public class World {
         this.spaces = spaces;
     }
 
-    public Space getSpaceAvailable(int x){
+    public Space getNextSpaceAvailable(int x) {
+        int y = 0;
+        Space currentSpace = World.getInstance().spaces[x][y];
+        if (!currentSpace.isAvailable()) {
+
+            while (!currentSpace.isAvailable() && y < height-1) {
+                currentSpace = this.getNextSpace(currentSpace);
+                y++;
+            }
+
+            return currentSpace;
+        }
+        return currentSpace;
+    }
+
+    public Space getSpaceAvailable(int x) {
         int y = 0;
         Space currentSpace = World.getInstance().spaces[x][y];
 
         if (currentSpace.getContent() == null) {
+
+            while (currentSpace.isAvailable() || y < height) {
+                currentSpace = this.getNextSpace(currentSpace);
+                y++;
+            }
+
             return currentSpace;
         }
-
-        while(currentSpace.getContent() != null || y < height){
-            currentSpace = this.getNextSpace(x, y);
-            y++;
-        }
-
         return currentSpace;
     }
 
-    public Space getNextSpace(int x, int y){
-        if(World.getInstance().spaces[x][y] !=  null){
-          return World.getInstance().spaces[x][y];
+
+    public Space getNextSpace(Space space){
+        return World.getInstance().spaces[space.getX()][space.getY()+1];
+    }
+
+    public Space[] getSpacesToPlace(){
+        Space[] res = new Space[7];
+        for(int y = 0;y<instance.getWidth();y++){
+            res[y]=getNextSpaceAvailable(y);
         }
-        return null;
+        return res;
+    }
+
+    @Override
+    protected World clone() throws CloneNotSupportedException {
+        return (World) super.clone();
+    }
+
+    public static World manualClone(){
+        World initWorld = World.getInstance();
+        World returnedWorld = new World(7,6);
+        returnedWorld.spaces = initWorld.spaces;
+        return returnedWorld;
     }
 }
