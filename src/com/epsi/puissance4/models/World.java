@@ -44,7 +44,7 @@ public class World implements Cloneable{
 
     public boolean checkVictory(Space lastSpace){
         if(checkRow(lastSpace) || checkColumn(lastSpace) || checkDiagonal(lastSpace)){
-            System.out.println("victory");
+            //System.out.println("victory");
             return true;
         }
         return false;
@@ -97,7 +97,7 @@ public class World implements Cloneable{
     }
 
     private boolean checkDiagonal(Space lastSpace) {
-        return false;
+        return checkFailingDiagonal(lastSpace) || checkRisingDiagonal(lastSpace);
     }
 
     public void displayWorld(){
