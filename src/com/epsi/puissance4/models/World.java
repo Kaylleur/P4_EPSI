@@ -43,61 +43,61 @@ public class World implements Cloneable{
     }
 
     public boolean checkVictory(Space lastSpace){
-        if(checkRow(lastSpace)|| checkColumn(lastSpace) || checkDiagonal(lastSpace)){
-            System.out.println("victory vertical !!");
+        if(checkRow(lastSpace) || checkColumn(lastSpace) || checkDiagonal(lastSpace)){
+            //System.out.println("victory");
             return true;
         }
         return false;
     }
 
     private boolean checkRow(Space lastSpace) {
-        int lastSpaceX = lastSpace.getX();
-        int lastSpaceY = lastSpace.getY();
-        String color = lastSpace.getContent().getColor().toString();
-        int countTokenAlign;
-
-        int y = lastSpaceY;
+        boolean res = false;
+        Player player = lastSpace.getContent().getPlayer();
         int i = 0;
-
-
-        return  true;
-
+        int y = lastSpace.getY();
+        while(!res && i < 4){
+            int newX = lastSpace.getX() + (i - 3);
+            if(newX > 0){
+                int j = 0;
+                do{
+                    if(!spaces[newX + j][y].isAvailable()){
+                        res = player.equals(spaces[newX + j][y].getContent().getPlayer());
+                    } else {
+                        res = false;
+                    }
+                    j++;
+                }while (res && j<4);
+            }
+            i++;
+        }
+        return res;
     }
 
     private boolean checkColumn(Space lastSpace) {
-        int lastSpaceX = lastSpace.getX();
-        int lastSpaceY = lastSpace.getY();
-        String color = lastSpace.getContent().getColor().toString();
-        boolean[] check = new boolean[4];
-
-        int y = lastSpaceY;
+        boolean res = false;
+        Player player = lastSpace.getContent().getPlayer();
         int i = 0;
-
-        if(y < 4){
-            return false;
-        }
-
-        while(y > lastSpaceY-4){
-          check[i] = isSameColor(color, spaces[lastSpaceX][y].getContent().getColor().toString());
-          y--;
-          i++;
-        }
-
-        for (int j = 0; j < 3; j++) {
-            if(check[j] == false){
-                return false;
+        int x = lastSpace.getX();
+        while(!res && i < 4){
+            int newY = lastSpace.getY() - (i + 3);
+            if(newY >= 0){
+                int j = 0;
+                do{
+                    if(!spaces[x][newY + j].isAvailable()){
+                        res = player.equals(spaces[x][newY + j].getContent().getPlayer());
+                    } else {
+                        res = false;
+                    }
+                    j++;
+                }while (res && j<4);
             }
+            i++;
         }
-
-        return true;
-    }
-
-    private boolean isSameColor(String lastSpaceColor, String otherColor){
-        return lastSpaceColor == otherColor;
+        return res;
     }
 
     private boolean checkDiagonal(Space lastSpace) {
-        return false;
+        return checkFailingDiagonal(lastSpace) || checkRisingDiagonal(lastSpace);
     }
 
     public void displayWorld(){
@@ -116,7 +116,6 @@ public class World implements Cloneable{
         }
         System.out.println("---------------------------------");
     }
-
 
     public Space[][] getSpaces() {
         return spaces;
@@ -140,23 +139,6 @@ public class World implements Cloneable{
         }
         return currentSpace;
     }
-
-    public Space getSpaceAvailable(int x) {
-        int y = 0;
-        Space currentSpace = World.getInstance().spaces[x][y];
-
-        if (currentSpace.getContent() == null) {
-
-            while (currentSpace.isAvailable() || y < height) {
-                currentSpace = this.getNextSpace(currentSpace);
-                y++;
-            }
-
-            return currentSpace;
-        }
-        return currentSpace;
-    }
-
 
     public Space getNextSpace(Space space){
         return World.getInstance().spaces[space.getX()][space.getY()+1];
