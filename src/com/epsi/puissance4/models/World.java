@@ -101,4 +101,42 @@ public class World implements Cloneable{
         returnedWorld.spaces = initWorld.spaces;
         return returnedWorld;
     }
+
+    public boolean checkFailingDiagonal(Space initSpace){
+        boolean res = false;
+        Player player = initSpace.getContent().getPlayer();
+        int i = 0;
+        while(!res && i < 4){
+            int newX = initSpace.getX() + (i - 3);
+            int newY = initSpace.getY() - (i - 3);
+            if(newX > 0 && newY < 6){
+                int j = 0;
+                do{
+                    res = player.equals(spaces[newX + j][newY - j].getContent().getPlayer());
+                    j++;
+                }while (res && j<4);
+            }
+            i++;
+        }
+        return res;
+    }
+
+    public boolean checkRisingDiagonal(Space initSpace){
+        boolean res = false;
+        Player player = initSpace.getContent().getPlayer();
+        int i = 0;
+        while(!res && i < 4){
+            int newX = initSpace.getX() + (i - 3);
+            int newY = initSpace.getY() + (i - 3);
+            if(newX > 0 && newY > 0){
+                int j = 0;
+                do{
+                    res = player.equals(spaces[newX + j][newY + j].getContent().getPlayer());
+                    j++;
+                }while (res && j<4);
+            }
+            i++;
+        }
+        return res;
+    }
 }
