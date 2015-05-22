@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:background="@drawable/wallpaper" android:weightSum="1"
+              android:id="@+id/layout">
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SETTINGS"
+            android:id="@+id/textView" android:layout_gravity="center_horizontal" android:layout_weight="0.08"
+            android:textSize="28dp"/>
+    <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Surrond sound"
+            android:id="@+id/chkbSurround" android:layout_weight="0.08"/>
+    <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Animations sound"
+            android:id="@+id/chkbAnimations" android:layout_weight="0.08"/>
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
+            >
+        <Button
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="Cancel"
+                android:id="@+id/btnCancel"/>
+        <Button
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="Save"
+                android:id="@+id/btnSave"/>
+    </LinearLayout>
+</LinearLayout>
+
