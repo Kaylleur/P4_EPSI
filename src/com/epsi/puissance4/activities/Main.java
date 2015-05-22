@@ -36,10 +36,10 @@ public class Main extends Activity implements View.OnClickListener{
              Intent intention = new Intent(this,Settings.class);
             startActivity(intention);
         }else if(v == btnSingle) {
-            Intent intention = new Intent(this, SingleMode.class);
+            Intent intention = new Intent(this, ViewGame.class);
             startActivity(intention);
         }else if (v == btnMulti) {
-            Intent intention = new Intent(this, MultyMode.class);
+            Intent intention = new Intent(this, MultiMode.class);
             startActivity(intention);
         }
     }

@@ -20,6 +20,7 @@ public class SingleMode extends Activity implements View.OnClickListener{
         setContentView(R.layout.single);
         btnSurrend = (Button) findViewById(R.id.btnSurrend);
         btnSurrend.setOnClickListener(this);
+
     }
     public void onClick(View v) {
         if (v == btnSurrend) {
