@@ -3,8 +3,8 @@ package com.epsi.puissance4.models;
 
 public class Token {
 
-    Color color;
-    Player player;
+    private Color color;
+    private Player player;
 
     public Token(Color color,Player player) {
         this.color = color;

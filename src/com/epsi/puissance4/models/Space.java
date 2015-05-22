@@ -36,7 +36,7 @@ public class Space {
     }
 
     public void setContent(Token content) {
-        content = content;
+        this.content = content;
     }
 
     public boolean isAvailable(){
