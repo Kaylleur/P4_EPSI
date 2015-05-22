@@ -30,9 +30,7 @@ public class Computer extends Player {
         Space[] spaces = world.getSpacesToPlace();
         Space bestSpace = spaces[0];
 
-<<<<<<< HEAD
-        World world = World.getInstance();
-=======
+
         for(Space s : spaces){
             if(s.isAvailable()){
                 s.setContent(tokens.get(tokens.size()-1));
@@ -46,7 +44,7 @@ public class Computer extends Player {
         }
         placeToken(bestSpace.getY());
     }
->>>>>>> d4b90260400424a1621fc713f71026533c24edb8
+
 
     public int max(World world,Space lastSpace, int depth){
         if(depth == 0 || world.checkVictory(lastSpace)){

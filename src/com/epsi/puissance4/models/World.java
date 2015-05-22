@@ -29,7 +29,6 @@ public class World implements Cloneable{
 
     public static World getInstance(){
         if(instance==null){
-            /** TODO voir pour différentes tailles **/
             instance = new World(7,6);
         }
         return instance;
@@ -54,7 +53,7 @@ public class World implements Cloneable{
     private boolean checkRow(Space lastSpace) {
         int lastSpaceX = lastSpace.getX();
         int lastSpaceY = lastSpace.getY();
-        String color = lastSpace.getContent().color.toString();
+        String color = lastSpace.getContent().getColor().toString();
         int countTokenAlign;
 
         int y = lastSpaceY;
@@ -68,7 +67,7 @@ public class World implements Cloneable{
     private boolean checkColumn(Space lastSpace) {
         int lastSpaceX = lastSpace.getX();
         int lastSpaceY = lastSpace.getY();
-        String color = lastSpace.getContent().color.toString();
+        String color = lastSpace.getContent().getColor().toString();
         boolean[] check = new boolean[4];
 
         int y = lastSpaceY;
@@ -117,6 +116,7 @@ public class World implements Cloneable{
         }
         System.out.println("---------------------------------");
     }
+
 
     public Space[][] getSpaces() {
         return spaces;
@@ -180,5 +180,43 @@ public class World implements Cloneable{
         World returnedWorld = new World(7,6);
         returnedWorld.spaces = initWorld.spaces;
         return returnedWorld;
+    }
+
+    public boolean checkFailingDiagonal(Space initSpace){
+        boolean res = false;
+        Player player = initSpace.getContent().getPlayer();
+        int i = 0;
+        while(!res && i < 4){
+            int newX = initSpace.getX() + (i - 3);
+            int newY = initSpace.getY() - (i - 3);
+            if(newX > 0 && newY < 6){
+                int j = 0;
+                do{
+                    res = player.equals(spaces[newX + j][newY - j].getContent().getPlayer());
+                    j++;
+                }while (res && j<4);
+            }
+            i++;
+        }
+        return res;
+    }
+
+    public boolean checkRisingDiagonal(Space initSpace){
+        boolean res = false;
+        Player player = initSpace.getContent().getPlayer();
+        int i = 0;
+        while(!res && i < 4){
+            int newX = initSpace.getX() + (i - 3);
+            int newY = initSpace.getY() + (i - 3);
+            if(newX > 0 && newY > 0){
+                int j = 0;
+                do{
+                    res = player.equals(spaces[newX + j][newY + j].getContent().getPlayer());
+                    j++;
+                }while (res && j<4);
+            }
+            i++;
+        }
+        return res;
     }
 }
