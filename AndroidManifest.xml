@@ -18,5 +18,9 @@
         <activity android:name=".activities.MultiMode"
                   android:label="@string/app_name">
         </activity>
+        <activity android:name=".activities.SingleMode"
+                  android:label="@string/app_name">
+        </activity>
+
     </application>
 </manifest>

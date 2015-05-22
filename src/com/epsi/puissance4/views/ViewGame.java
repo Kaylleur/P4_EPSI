@@ -1,20 +1,12 @@
-package com.epsi.puissance4.activities;
+package com.epsi.puissance4.views;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import com.epsi.puissance4.R;
-
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
-
 import java.util.LinkedList;
 
 public class ViewGame extends View implements View.OnTouchListener{
@@ -37,7 +29,6 @@ public class ViewGame extends View implements View.OnTouchListener{
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
-        Log.d("touch event", "Touch event launched");
         int x = (int)event.getX();
         int y = (int)event.getY();
         String strColor;

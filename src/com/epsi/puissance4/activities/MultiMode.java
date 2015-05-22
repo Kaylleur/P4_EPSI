@@ -11,13 +11,10 @@ public class MultiMode extends Activity implements View.OnClickListener{
 
     private Button btnSurrend;
 
-    /**
-     * Called when the activity is first created.
-     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.single);
+        setContentView(R.layout.multi);
         btnSurrend = (Button) findViewById(R.id.btnSurrend);
         btnSurrend.setOnClickListener(this);
 
