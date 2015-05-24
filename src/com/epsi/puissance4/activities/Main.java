@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import com.epsi.puissance4.R;
+import com.epsi.puissance4.views.ViewGame;
 
 public class Main extends Activity implements View.OnClickListener{
 
@@ -32,15 +33,20 @@ public class Main extends Activity implements View.OnClickListener{
 
     }
     public void onClick(View v) {
-        if (v == btnSettings) {
-             Intent intention = new Intent(this,Settings.class);
-            startActivity(intention);
-        }else if(v == btnSingle) {
-            Intent intention = new Intent(this, ViewGame.class);
-            startActivity(intention);
-        }else if (v == btnMulti) {
-            Intent intention = new Intent(this, MultiMode.class);
-            startActivity(intention);
+
+        switch(v.getId()){
+            case R.id.btnSettings:
+                Intent intentSettings = new Intent(this,Settings.class);
+                startActivity(intentSettings);
+                break;
+            case R.id.btnMulti:
+                Intent intentMulti = new Intent(this,MultiMode.class);
+                startActivity(intentMulti);
+                break;
+            case R.id.btnSingle:
+                Intent intentSingle = new Intent(this,SingleMode.class);
+                startActivity(intentSingle);
+                break;
         }
     }
 }

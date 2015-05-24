@@ -4,12 +4,17 @@
               android:layout_width="fill_parent"
               android:layout_height="fill_parent"
               android:background="@drawable/wallpaper" android:weightSum="1"
-              android:id="@+id/layout">
+              android:id="@+id/layout"
+        >
 
-    <com.epsi.puissance4.activities.ViewGame
-            android:layout_width="fill_parent"
+    <Button
+            android:layout_width="320dp"
             android:layout_height="wrap_content"
+            android:text="SURRENDER"
+            android:id="@+id/btnSurrend" android:layout_gravity="center_horizontal" android:layout_weight="0.08"/>
+
+    <view android:layout_width="361dp"
+          android:layout_height="460dp"
+          class="com.epsi.puissance4.views.ViewGame" android:id="@+id/view" android:layout_gravity="center_horizontal"
             />
-
 </LinearLayout>
-
