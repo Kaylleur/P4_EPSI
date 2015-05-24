@@ -1,8 +1,8 @@
 package com.epsi.puissance4.models;
 
-/**
- * Created by Akronys on 06/05/2015.
- */
+
+import java.util.List;
+
 public class main {
     public static void main(String[] args) {
         /**
@@ -14,14 +14,17 @@ public class main {
         Player player1 = new Player(Color.RED);
         Player player2 = new Player(Color.YELLOW);
 
+        List<Player> players = Player.players;
+
         int randomNum;
 
-        for (int i = 0; i < 10; i++) {
-            for (Player player : Player.players) {
-                randomNum = (int) (Math.random() * ((6 - 0) + 1));
-                System.out.println(player.getId());
-                player.placeToken(randomNum);
+        for (int i = 0; i < 15; i++) {
+            System.out.println("TOUR N° :" + (i+1));
+            for (Player player : players) {
+                randomNum = (int) (Math.random() * ((6 - 0)));
+                Space space = player.placeToken(randomNum);
                 World.getInstance().displayWorld();
+                World.getInstance().checkVictory(space);
             }
         }
     }

@@ -164,6 +164,10 @@ public class World implements Cloneable{
         return returnedWorld;
     }
 
+    private boolean isNotOut(int x,int y){
+        return (x >= 0 && x <= 6)&&(y >=0 && y <= 5);
+    }
+
     public boolean checkFailingDiagonal(Space initSpace){
         boolean res = false;
         Player player = initSpace.getContent().getPlayer();
@@ -171,10 +175,15 @@ public class World implements Cloneable{
         while(!res && i < 4){
             int newX = initSpace.getX() + (i - 3);
             int newY = initSpace.getY() - (i - 3);
-            if(newX > 0 && newY < 6){
+            System.out.println("verif " + i);
+            if(isNotOut(newX,newY)){
                 int j = 0;
                 do{
-                    res = player.equals(spaces[newX + j][newY - j].getContent().getPlayer());
+                    System.out.println("newX " + (newX+j) );
+                    System.out.println("newY " + (newY-j) );
+                    if(!spaces[newX + j][newY - j].isAvailable()) {
+                        res = player.equals(spaces[newX + j][newY - j].getContent().getPlayer());
+                    }
                     j++;
                 }while (res && j<4);
             }
@@ -193,7 +202,9 @@ public class World implements Cloneable{
             if(newX > 0 && newY > 0){
                 int j = 0;
                 do{
-                    res = player.equals(spaces[newX + j][newY + j].getContent().getPlayer());
+                    if(!spaces[newX + j][newY + j].isAvailable()) {
+                        res = player.equals(spaces[newX + j][newY + j].getContent().getPlayer());
+                    }
                     j++;
                 }while (res && j<4);
             }
