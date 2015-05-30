@@ -23,8 +23,11 @@ public class main {
             for (Player player : players) {
                 randomNum = (int) (Math.random() * ((6 - 0)));
                 Space space = player.placeToken(randomNum);
-                World.getInstance().displayWorld();
-                World.getInstance().checkVictory(space);
+                if(space != null)
+                {
+                    World.getInstance().displayWorld();
+                    World.getInstance().checkVictory(space);
+                }
             }
         }
     }
