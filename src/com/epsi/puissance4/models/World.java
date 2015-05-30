@@ -35,7 +35,7 @@ public class World implements Cloneable{
     }
 
     public boolean checkVictory(Space lastSpace){
-        if(checkRow(lastSpace) || checkColumn(lastSpace) || checkDiagonal(lastSpace)){
+        if(checkDiagonal(lastSpace)){
             return true;
         }
         return false;
@@ -46,12 +46,12 @@ public class World implements Cloneable{
         Player player = lastSpace.getContent().getPlayer();
         int i = 0;
         int y = lastSpace.getY();
-        while(!res && i < 4){
+        while(!res && i < 7){
             int newX = lastSpace.getX() + (i - 3);
             if(isNotOut(newX,y)){
                 int j = 0;
                 do{
-                    if(isNotOut(newX,y) &&!spaces[newX + j][y].isAvailable())
+                    if(isNotOut(newX+j,y) &&!spaces[newX + j][y].isAvailable())
                         res = player.equals(spaces[newX + j][y].getContent().getPlayer());
                     else
                         res = false;
@@ -75,7 +75,7 @@ public class World implements Cloneable{
             if(isNotOut(x,newY)){
                 int j = 0;
                 do{
-                    if(isNotOut(x,newY) && !spaces[x][newY + j].isAvailable())
+                    if(isNotOut(x,newY+j) && !spaces[x][newY + j].isAvailable())
                         res = player.equals(spaces[x][newY + j].getContent().getPlayer());
                     else
                         res = false;
@@ -90,7 +90,7 @@ public class World implements Cloneable{
     }
 
     private boolean checkDiagonal(Space lastSpace) {
-        return checkFailingDiagonal(lastSpace) || checkRisingDiagonal(lastSpace);
+        return checkRisingDiagonal(lastSpace);
     }
 
     public void displayWorld(){
@@ -157,29 +157,25 @@ public class World implements Cloneable{
     }
 
     private boolean isNotOut(int x,int y){
-        return (x > 0 && x <= 6)&&(y >0 && y <= 5);
+        return (x >= 0 && x <= 6)&&(y >=0 && y <= 5);
     }
 
     public boolean checkFailingDiagonal(Space initSpace){
         boolean res = false;
         Player player = initSpace.getContent().getPlayer();
         int i = 0;
-        while(!res && i < 4){
-            int newX = initSpace.getX() + (i - 3);
+        while(!res && i < 6){
+            int newX = initSpace.getX() - (3 - i);
             int newY = initSpace.getY() - (i - 3);
             System.out.println("X : " + newX + " Y : " + newY + " i: " +i);
 
             if(isNotOut(newX,newY)){
                 int j = 0;
                 do{
-                    if(isNotOut(newX + j,newY - j) && !spaces[newX + j][newY - j].isAvailable()){
-                        System.out.println("X : " + (newX + j) + " Y : " + (newY - j));
+                    if(isNotOut(newX + j,newY - j) && !spaces[newX + j][newY - j].isAvailable())
                         res = player.equals(spaces[newX + j][newY - j].getContent().getPlayer());
-                        System.out.println(res);
-                    } else{
-                        return false;
-                    }
-
+                    else
+                        res = false;
                     j++;
                 }while (res && j<4);
             }
@@ -194,16 +190,16 @@ public class World implements Cloneable{
         boolean res = false;
         Player player = initSpace.getContent().getPlayer();
         int i = 0;
-        while(!res && i < 4){
+        while(!res && i < 7){
             int newX = initSpace.getX() + (i - 3);
             int newY = initSpace.getY() + (i - 3);
             if(isNotOut(newX,newY)){
                 int j = 0;
                 do{
-                    if(isNotOut(newX + j,newY - j) && !spaces[newX + j][newY - j].isAvailable())
-                        res = player.equals(spaces[newX + j][newY - j].getContent().getPlayer());
+                    if(isNotOut(newX + j,newY + j) && !spaces[newX + j][newY + j].isAvailable())
+                        res = player.equals(spaces[newX + j][newY + j].getContent().getPlayer());
                     else
-                        return false;
+                        res = false;
                     j++;
                 }while (res && j<4);
             }
