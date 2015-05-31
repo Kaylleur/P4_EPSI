@@ -9,7 +9,7 @@ import android.widget.Button;
 import com.epsi.puissance4.R;
 import android.util.Log;
 
-public class SingleMode extends Activity implements View.OnClickListener{
+public class SingleMode extends Activity{
 
     private Button btnSurrend;
     /**
@@ -18,18 +18,10 @@ public class SingleMode extends Activity implements View.OnClickListener{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d("debug","Enter to Single activity");
         setContentView(R.layout.single);
-        btnSurrend = (Button) findViewById(R.id.btnSurrend);
-        btnSurrend.setOnClickListener(this);
 
     }
-    public void onClick(View v) {
-        if (v == btnSurrend) {
-            Intent intention = new Intent(this,Main.class);
-            startActivity(intention);
-        }
-    }
+
 }
 
 

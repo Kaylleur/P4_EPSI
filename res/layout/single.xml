@@ -7,14 +7,22 @@
               android:id="@+id/layout"
         >
 
-    <Button
-            android:layout_width="320dp"
-            android:layout_height="wrap_content"
-            android:text="SURRENDER"
-            android:id="@+id/btnSurrend" android:layout_gravity="center_horizontal" android:layout_weight="0.08"/>
-
     <view android:layout_width="361dp"
-          android:layout_height="460dp"
-          class="com.epsi.puissance4.views.ViewGame" android:id="@+id/view" android:layout_gravity="center_horizontal"
+          android:layout_height="335dp"
+          class="com.epsi.puissance4.views.TestView" android:id="@+id/view" android:layout_gravity="center_horizontal"
             />
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:weightSum="1">
+        <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Button"
+                android:id="@+id/button" android:layout_weight="0.39"/>
+        <Button style="?android:attr/buttonStyleSmall" android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:text="New Button" android:id="@+id/button2"
+                android:layout_weight="0.39"/>
+    </LinearLayout>
 </LinearLayout>

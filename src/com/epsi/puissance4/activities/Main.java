@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import com.epsi.puissance4.R;
-import com.epsi.puissance4.views.ViewGame;
 
 public class Main extends Activity implements View.OnClickListener{
 
