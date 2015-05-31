@@ -1,6 +1,7 @@
 package com.epsi.puissance4.activities;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
