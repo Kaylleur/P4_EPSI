@@ -3,34 +3,25 @@ package com.epsi.puissance4.views;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.graphics.*;
 
 import java.util.LinkedList;
 
-public class TestView extends View {
+public class GameView extends View {
 
     Paint paintGrid = new Paint();
-    Paint paintTokenJ1= new Paint();
-    Paint paintTokenJ2= new Paint();
-
     DisplayMetrics metrics = this.getContext().getResources().getDisplayMetrics();
     int widthScreen = metrics.widthPixels;
     int heightScreen = metrics.heightPixels;
-
     int rowNumber = 6;
     int colNumber = 7;
-
     float cellLength = widthScreen /colNumber;
     float gameHeight = cellLength *rowNumber;
-    float gameWidth = cellLength*colNumber;
-
     LinkedList<TokenView> tokens;
 
-
-    public TestView(Context context, AttributeSet attrs) {
+    public GameView(Context context, AttributeSet attrs) {
 
         super(context, attrs);
         this.initGUI(context);
@@ -40,9 +31,6 @@ public class TestView extends View {
     private void initGUI(Context context){
         paintGrid.setColor(Color.WHITE);
         paintGrid.setTextSize(18);
-        paintTokenJ1.setColor(Color.RED);
-        paintTokenJ2.setColor(Color.YELLOW);
-
 
         this.setOnTouchListener(new View.OnTouchListener() {
             public boolean onTouch(View v, MotionEvent event) {
@@ -82,13 +70,6 @@ public class TestView extends View {
         for(int j=rowNumber;j >=0; j-- ){
             canvas.drawLine(0,gameHeight/rowNumber*j, widthScreen,gameHeight/rowNumber*j,paintGrid);
         }
-    }
-
-    private void drawCircleInGrid(Canvas canvas, int cellNumX, int cellNumY, int side){
-        int cx = this.getCellCenterX(cellNumY);
-        int cy = this.getCellCenterY(cellNumX);
-        Paint paint = this.paintTokenJ1;
-        canvas.drawCircle(cx, cy, cellLength /2, paint);
     }
 
     private int getCellCenterX(int cellNumX){

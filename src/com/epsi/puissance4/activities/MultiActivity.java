@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import com.epsi.puissance4.R;
 
-public class MultiMode extends Activity implements View.OnClickListener{
+public class MultiActivity extends Activity implements View.OnClickListener{
 
     private Button btnSurrend;
 
@@ -21,7 +21,7 @@ public class MultiMode extends Activity implements View.OnClickListener{
     }
     public void onClick(View v) {
         if (v == btnSurrend) {
-            Intent intention = new Intent(this,Main.class);
+            Intent intention = new Intent(this,MainActivity.class);
             startActivity(intention);
         }
     }

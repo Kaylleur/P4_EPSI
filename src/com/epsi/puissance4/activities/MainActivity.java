@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import com.epsi.puissance4.R;
 
-public class Main extends Activity implements View.OnClickListener{
+public class MainActivity extends Activity implements View.OnClickListener{
 
     private Button btnSingle;
     private Button btnMulti;
@@ -35,15 +35,15 @@ public class Main extends Activity implements View.OnClickListener{
 
         switch(v.getId()){
             case R.id.btnSettings:
-                Intent intentSettings = new Intent(this,Settings.class);
+                Intent intentSettings = new Intent(this,SettingsActivity.class);
                 startActivity(intentSettings);
                 break;
             case R.id.btnMulti:
-                Intent intentMulti = new Intent(this,MultiMode.class);
+                Intent intentMulti = new Intent(this,MultiActivity.class);
                 startActivity(intentMulti);
                 break;
             case R.id.btnSingle:
-                Intent intentSingle = new Intent(this,SingleMode.class);
+                Intent intentSingle = new Intent(this,SoloActivity.class);
                 startActivity(intentSingle);
                 break;
         }

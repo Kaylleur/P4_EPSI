@@ -7,9 +7,11 @@
               android:id="@+id/layout"
         >
 
-    <view android:layout_width="361dp"
-          android:layout_height="335dp"
-          class="com.epsi.puissance4.views.TestView" android:id="@+id/view" android:layout_gravity="center_horizontal"
+    <view android:layout_width="360dp"
+          android:layout_height="310dp"
+          class="com.epsi.puissance4.views.GameView"
+          android:id="@+id/gameView"
+          android:layout_gravity="center_horizontal"
             />
     <LinearLayout
             android:orientation="horizontal"
@@ -19,10 +21,7 @@
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="New Button"
-                android:id="@+id/button" android:layout_weight="0.39"/>
-        <Button style="?android:attr/buttonStyleSmall" android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:text="New Button" android:id="@+id/button2"
-                android:layout_weight="0.39"/>
+                android:text="Leave the game"
+                android:id="@+id/btnLeave"/>
     </LinearLayout>
 </LinearLayout>

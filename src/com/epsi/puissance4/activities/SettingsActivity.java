@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import com.epsi.puissance4.R;
 
-public class Settings extends Activity  implements View.OnClickListener{
+public class SettingsActivity extends Activity  implements View.OnClickListener{
 
     private Button btnCancel;
     private Button btnSave;
@@ -26,9 +26,9 @@ public class Settings extends Activity  implements View.OnClickListener{
     public void onClick(View v) {
         Intent intention =null;
         if (v == btnSave) {
-            intention = new Intent(this,Main.class);
+            intention = new Intent(this,MainActivity.class);
         }else if ((v == btnCancel)) {
-            intention = new Intent(this, Main.class);
+            intention = new Intent(this, MainActivity.class);
         }
         startActivity(intention);
     }
