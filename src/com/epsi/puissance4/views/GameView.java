@@ -20,7 +20,7 @@ public class GameView extends View {
     Paint paintGrid = new Paint();
     DisplayMetrics metrics = this.getContext().getResources().getDisplayMetrics();
     int widthScreen = metrics.widthPixels;
-    int heightScreen = metrics.heightPixels;
+    int heightScreen=metrics.heightPixels;
     int rowNumber = 6;
     int colNumber = 7;
     float cellLength = widthScreen /colNumber;
@@ -32,6 +32,7 @@ public class GameView extends View {
         super(context, attrs);
         this.initGUI(context);
         tokens = new LinkedList<TokenView>();
+
     }
 
     private void initGUI(Context context){
@@ -65,6 +66,7 @@ public class GameView extends View {
                     Log.d("coordonnées du point  :", "{"+s.getX()+";"+s.getY()+"}");
                     tokens.add(new TokenView(getCellCenterX(s.getX()), getCellCenterY(s.getY()), (int) cellLength / 3, strColor));
                 }
+
                 return true;
             }
         });
@@ -103,9 +105,8 @@ public class GameView extends View {
         return colNum;
     }
     private int getRowFromPosition(int posY){
-        int rowNum = (int) (posY/ cellLength);
+        int rowNum = (int) ((heightScreen-gameHeight-posY)/ cellLength);
         return rowNum;
     }
-
 
 }
