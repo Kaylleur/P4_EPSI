@@ -69,7 +69,7 @@ public class SoloActivity extends Activity implements View.OnClickListener{
 
     }
 
-    private void popupWIn(){
+    public void popupWIn(){
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setMessage("Congratulations! You win, play again ?");
         builder.setCancelable(true);
