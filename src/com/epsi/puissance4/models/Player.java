@@ -49,13 +49,12 @@ public class Player {
 
     public Space placeToken(int x){
         Space space = World.getInstance().getNextSpaceAvailable(x);
-        Token token = tokens.get(tokens.size()-1);
+        Token token = new Token(this);
 
         if(token.getPlayer() == null)
             return null;
 
         World.getInstance().getSpaces()[x][space.getY()].setContent(token);
-        tokens.remove(token);
 
         return space;
     }
