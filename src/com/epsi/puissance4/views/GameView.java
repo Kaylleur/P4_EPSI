@@ -108,7 +108,7 @@ public class GameView extends View {
     }
 
     private int getCellCenterY(int cellNumY){
-        int cy = (int) (cellNumY* cellLength + cellLength /2);
+        int cy = (int) ((gameHeight -(cellNumY* cellLength)- cellLength ) + cellLength /2);
         return cy;
     }
 

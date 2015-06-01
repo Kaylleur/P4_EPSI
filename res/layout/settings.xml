@@ -19,8 +19,8 @@
     <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Animations sound"
-            android:id="@+id/chkbAnimations" android:layout_weight="0.08"/>
+            android:text="Notifications sound"
+            android:id="@+id/checkNotif" android:layout_weight="0.08"/>
     <LinearLayout
             android:orientation="horizontal"
             android:layout_width="wrap_content"
