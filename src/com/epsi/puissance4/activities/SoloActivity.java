@@ -30,6 +30,7 @@ public class SoloActivity extends Activity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.single);
         gameView = (GameView) findViewById(R.id.gameView);
+        gameView.setActivity(this);
         btnLeave = (Button)findViewById(R.id.btnLeave);
         btnLeave.setOnClickListener(this);
         context= SoloActivity.this;
@@ -66,7 +67,7 @@ public class SoloActivity extends Activity implements View.OnClickListener{
 
     }
 
-    private void popupWIn(){
+    public void popupWIn(){
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setMessage("Congratulations! You win, play again ?");
         builder.setCancelable(true);
@@ -100,6 +101,8 @@ public class SoloActivity extends Activity implements View.OnClickListener{
             e.printStackTrace();
         }
     }
+
+
 
 }
 

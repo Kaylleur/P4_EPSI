@@ -9,9 +9,11 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import com.epsi.puissance4.activities.SoloActivity;
 import com.epsi.puissance4.models.Computer;
 import com.epsi.puissance4.models.Player;
 import com.epsi.puissance4.models.Space;
+import com.epsi.puissance4.models.World;
 
 import java.util.LinkedList;
 
@@ -26,6 +28,7 @@ public class GameView extends View {
     float cellLength = widthScreen /colNumber;
     float gameHeight = cellLength *rowNumber;
     LinkedList<TokenView> tokens;
+    private SoloActivity activity;
 
     public GameView(Context context, AttributeSet attrs) {
 
@@ -33,6 +36,14 @@ public class GameView extends View {
         this.initGUI(context);
         tokens = new LinkedList<TokenView>();
 
+    }
+
+    public SoloActivity getActivity() {
+        return activity;
+    }
+
+    public void setActivity(SoloActivity activity) {
+        this.activity = activity;
     }
 
     private void initGUI(Context context){
@@ -65,8 +76,10 @@ public class GameView extends View {
                     }
                     Log.d("coordonnées du point  :", "{"+s.getX()+";"+s.getY()+"}");
                     tokens.add(new TokenView(getCellCenterX(s.getX()), getCellCenterY(s.getY()), (int) cellLength / 3, strColor));
+                    if(World.getInstance().checkVictory(s)){
+                        activity.popupWIn();
+                    }
                 }
-
                 return true;
             }
         });
