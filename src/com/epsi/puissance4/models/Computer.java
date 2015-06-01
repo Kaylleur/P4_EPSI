@@ -25,7 +25,7 @@ public class Computer extends Player {
         }
 
         int depth = this.getLevel().getDepth();
-        int max = -10000;
+        int min = 10000;
         int tmp = 0;
         Space[] spaces = world.getSpacesToPlace();
         Space bestSpace = spaces[0];
@@ -34,9 +34,9 @@ public class Computer extends Player {
         for(Space s : spaces){
             if(s.isAvailable()){
                 s.setContent(tokens.get(0));
-                tmp = min(world,s,depth-1);
-                if(tmp > max){
-                    max = tmp;
+                tmp = max(world,s,depth-1);
+                if(tmp > min){
+                    min = tmp;
                     bestSpace = s;
                 }
                 s.setContent(null);
