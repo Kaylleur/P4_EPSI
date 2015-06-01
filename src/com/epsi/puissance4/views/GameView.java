@@ -47,7 +47,7 @@ public class GameView extends View {
         paintGrid.setTextSize(18);
 
         this.setOnTouchListener(new View.OnTouchListener() {
-            public boolean onTouch(View v, MotionEvent event) {
+            public synchronized boolean onTouch(View v, MotionEvent event) {
 
                 int x = (int) event.getX();
                 int y = (int) event.getY();
@@ -58,10 +58,10 @@ public class GameView extends View {
                 Player p;
                 if (tokens.size() % 2 == 0) {
                     p = Player.players.get(0);
-                    strColor = p.getTokens().get(0).getColor().name();
+                    strColor = p.getColor().name();
                 } else {
                     p = Player.players.get(1);
-                    strColor = p.getTokens().get(0).getColor().name();
+                    strColor = p.getColor().name();
                 }
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
                     Space s;
@@ -76,7 +76,7 @@ public class GameView extends View {
                         activity.popupWIn(p);
                     }
                     if(p.getLevel().equals(Level.NO) && !Player.players.get(1).getLevel().equals(Level.NO)){
-                        this.onTouch(v, event);
+                        onTouch(v, event);
                     }
                 }
                 return true;

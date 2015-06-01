@@ -89,22 +89,6 @@ public class World implements Cloneable{
         return checkRisingDiagonal(lastSpace)||checkFailingDiagonal(lastSpace);
     }
 
-    public void displayWorld(){
-        for (int h = height-1; h >= 0; h--) {
-            for (int w = 0; w < width; w++) {
-                if(spaces[w][h].isAvailable()){
-                    System.out.print(" x ");
-                } else {
-                    String col = spaces[w][h].getContent().getColor().toString();
-                    col = col == "YELLOW" ? "Y": "R";
-                    System.out.print(" " + col + " ");
-                }
-        }
-            System.out.print("\n");
-        }
-        System.out.println("---------------------------------");
-    }
-
     public Space[][] getSpaces() {
         return spaces;
     }

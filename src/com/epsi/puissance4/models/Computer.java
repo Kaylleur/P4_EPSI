@@ -33,7 +33,7 @@ public class Computer extends Player {
 
         for(Space s : spaces){
             if(s.isAvailable()){
-                s.setContent(tokens.get(tokens.size()-1));
+                s.setContent(tokens.get(0));
                 tmp = min(world,s,depth-1);
                 if(tmp > max){
                     max = tmp;

@@ -5,8 +5,6 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.media.AudioManager;
-import android.media.MediaPlayer;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
@@ -71,7 +69,7 @@ public class SoloActivity extends Activity implements View.OnClickListener{
 
     public void popupWIn(Player p){
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setMessage("Congratulations! Player "+p.getTokens().get(0).getColor().name()+" win, play again ?");
+        builder.setMessage("Congratulations! "+p.getPseudo()+" win, play again ?");
         builder.setCancelable(true);
         builder.setPositiveButton("Yes",
                 new DialogInterface.OnClickListener(){
