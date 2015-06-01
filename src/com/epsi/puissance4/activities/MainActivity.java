@@ -31,6 +31,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
         btnMulti.setOnClickListener(this);
 
     }
+
     public void onClick(View v) {
 
         switch(v.getId()){
@@ -49,5 +50,3 @@ public class MainActivity extends Activity implements View.OnClickListener{
         }
     }
 }
-
-

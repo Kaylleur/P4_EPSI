@@ -35,7 +35,7 @@ public class World implements Cloneable{
     }
 
     public boolean checkVictory(Space lastSpace){
-        if(checkDiagonal(lastSpace)){
+        if(checkColumn(lastSpace) || checkRow(lastSpace) || checkDiagonal(lastSpace)){
             return true;
         }
         return false;
@@ -60,8 +60,6 @@ public class World implements Cloneable{
             }
             i++;
         }
-        if(res)
-            System.out.println("victory row :" + res);
         return res;
     }
 
@@ -84,13 +82,11 @@ public class World implements Cloneable{
             }
             i++;
         }
-        if(res)
-            System.out.println("victory column :" + res);
         return res;
     }
 
     private boolean checkDiagonal(Space lastSpace) {
-        return checkRisingDiagonal(lastSpace);
+        return checkRisingDiagonal(lastSpace)||checkFailingDiagonal(lastSpace);
     }
 
     public void displayWorld(){
@@ -113,9 +109,6 @@ public class World implements Cloneable{
         return spaces;
     }
 
-    public void setSpaces(Space[][] spaces) {
-        this.spaces = spaces;
-    }
 
     public Space getNextSpaceAvailable(int x) {
         int y = 0;
@@ -167,7 +160,6 @@ public class World implements Cloneable{
         while(!res && i < 6){
             int newX = initSpace.getX() - (3 - i);
             int newY = initSpace.getY() - (i - 3);
-            System.out.println("X : " + newX + " Y : " + newY + " i: " +i);
 
             if(isNotOut(newX,newY)){
                 int j = 0;
@@ -181,8 +173,6 @@ public class World implements Cloneable{
             }
             i++;
         }
-        if(res)
-            System.out.println("victory failing diagonal :" + res);
         return res;
     }
 
@@ -205,8 +195,11 @@ public class World implements Cloneable{
             }
             i++;
         }
-        if(res)
-            System.out.println("victory rising diagonal :" + res);
         return res;
+    }
+
+    public static void renew(){
+        instance = new World(7,6);
+        new Computer(Color.YELLOW,new Player(Color.RED));
     }
 }

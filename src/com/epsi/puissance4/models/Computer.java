@@ -15,7 +15,7 @@ public class Computer extends Player {
     }
 
 
-    public void play() {
+    public Space play() {
         World world = null;
         try {
             world = World.getInstance().clone();
@@ -42,7 +42,7 @@ public class Computer extends Player {
                 s.setContent(null);
             }
         }
-        placeToken(bestSpace.getY());
+        return placeToken(bestSpace.getY());
     }
 
 
@@ -56,7 +56,7 @@ public class Computer extends Player {
 
         for(Space s : spaces){
             if(s.isAvailable()){
-                s.setContent(enemy.tokens.get(enemy.tokens.size()));
+                s.setContent(enemy.tokens.get(0));
                 tmp = min(world,s,depth-1);
                 if(tmp > max){
                     max = tmp;
@@ -78,7 +78,7 @@ public class Computer extends Player {
 
         for (Space s : spaces){
             if(s.isAvailable()){
-                s.setContent(tokens.get(tokens.size()-1));
+                s.setContent(tokens.get(0));
                 tmp = max(world,s,depth-1);
                 if(tmp < min){
                     min = tmp;

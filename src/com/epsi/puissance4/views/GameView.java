@@ -1,12 +1,19 @@
 package com.epsi.puissance4.views;
 
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.graphics.*;
+import com.epsi.puissance4.activities.SoloActivity;
+import com.epsi.puissance4.models.Computer;
+import com.epsi.puissance4.models.Player;
+import com.epsi.puissance4.models.Space;
+import com.epsi.puissance4.models.World;
 
 import java.util.LinkedList;
 
@@ -21,6 +28,7 @@ public class GameView extends View {
     float cellLength = widthScreen /colNumber;
     float gameHeight = cellLength *rowNumber;
     LinkedList<TokenView> tokens;
+    private SoloActivity activity;
 
     public GameView(Context context, AttributeSet attrs) {
 
@@ -28,6 +36,14 @@ public class GameView extends View {
         this.initGUI(context);
         tokens = new LinkedList<TokenView>();
 
+    }
+
+    public SoloActivity getActivity() {
+        return activity;
+    }
+
+    public void setActivity(SoloActivity activity) {
+        this.activity = activity;
     }
 
     private void initGUI(Context context){
@@ -43,16 +59,27 @@ public class GameView extends View {
                 int row = getRowFromPosition(y);
 
                 String strColor;
+                Player p;
                 if (tokens.size() % 2 == 0) {
-                    strColor = "red";
+                    p = Player.players.get(0);
+                    strColor = p.getTokens().get(0).getColor().name();
                 } else {
-                    strColor = "yellow";
+                    p = Player.players.get(1);
+                    strColor = p.getTokens().get(0).getColor().name();
                 }
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    Log.d("Info",col+"/"+row);
-                    tokens.add(new TokenView(getCellCenterX(col), getCellCenterY(row), (int) cellLength / 3, strColor));
+                    Space s;
+                    if(p.getClass().equals(Computer.class)){
+                        s = ((Computer) p).play();
+                    }else{
+                        s = p.placeToken(col);
+                    }
+                    Log.d("coordonnées du point  :", "{"+s.getX()+";"+s.getY()+"}");
+                    tokens.add(new TokenView(getCellCenterX(s.getX()), getCellCenterY(s.getY()), (int) cellLength / 3, strColor));
+                    if(World.getInstance().checkVictory(s)){
+                        activity.popupWIn();
+                    }
                 }
-
                 return true;
             }
         });

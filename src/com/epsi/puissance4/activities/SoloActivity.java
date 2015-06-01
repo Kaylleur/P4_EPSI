@@ -11,11 +11,13 @@ import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import com.epsi.puissance4.R;
+import com.epsi.puissance4.models.Color;
+import com.epsi.puissance4.models.Computer;
+import com.epsi.puissance4.models.Player;
+import com.epsi.puissance4.models.World;
 import com.epsi.puissance4.views.GameView;
 
 public class SoloActivity extends Activity implements View.OnClickListener{
@@ -24,18 +26,18 @@ public class SoloActivity extends Activity implements View.OnClickListener{
     private GameView gameView;
     private SoloActivity currentIntent = this;
     private Context context;
-    private CheckBox checkSoundNotif;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.single);
         gameView = (GameView) findViewById(R.id.gameView);
+        gameView.setActivity(this);
         btnLeave = (Button)findViewById(R.id.btnLeave);
         btnLeave.setOnClickListener(this);
         context= SoloActivity.this;
-        checkSoundNotif=(CheckBox)findViewById(R.id.checkNotif);
-
+        World.renew();
+        new Computer(Color.YELLOW,new Player(Color.RED));
     }
 
     @Override
@@ -62,7 +64,6 @@ public class SoloActivity extends Activity implements View.OnClickListener{
                 AlertDialog alert = builderLeave.create();
                 alert.show();
                 ringtone();
-
                 break;
         }
 
