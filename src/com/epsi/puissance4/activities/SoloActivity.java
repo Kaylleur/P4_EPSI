@@ -20,7 +20,7 @@ import com.epsi.puissance4.models.Player;
 import com.epsi.puissance4.models.World;
 import com.epsi.puissance4.views.GameView;
 
-public class SoloActivity extends Activity implements View.OnClickListener{
+public class SoloActivity extends Activity implements View.OnClickListener, GameActivty{
 
     private Button btnLeave;
     private GameView gameView;
@@ -37,7 +37,8 @@ public class SoloActivity extends Activity implements View.OnClickListener{
         btnLeave.setOnClickListener(this);
         context= SoloActivity.this;
         World.renew();
-        new Computer(Color.YELLOW,new Player(Color.RED));
+        Player p = new Player(Color.RED);
+        new Computer(Color.YELLOW,p);
     }
 
     @Override
@@ -69,7 +70,7 @@ public class SoloActivity extends Activity implements View.OnClickListener{
 
     }
 
-    public void popupWIn(Player p){
+    public void popupWin(Player p){
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setMessage("Congratulations! "+p.getPseudo()+" win, play again ?");
         builder.setCancelable(true);

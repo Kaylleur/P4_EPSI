@@ -1,5 +1,6 @@
 package com.epsi.puissance4.views;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -8,6 +9,8 @@ import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
+import com.epsi.puissance4.activities.GameActivty;
+import com.epsi.puissance4.activities.MultiActivity;
 import com.epsi.puissance4.activities.SoloActivity;
 import com.epsi.puissance4.models.*;
 
@@ -24,7 +27,7 @@ public class GameView extends View {
     float cellLength = widthScreen /colNumber;
     float gameHeight = cellLength *rowNumber;
     LinkedList<TokenView> tokens;
-    private SoloActivity activity;
+    private Activity activity;
 
     public GameView(Context context, AttributeSet attrs) {
 
@@ -34,11 +37,11 @@ public class GameView extends View {
 
     }
 
-    public SoloActivity getActivity() {
+    public Activity getActivity() {
         return activity;
     }
 
-    public void setActivity(SoloActivity activity) {
+    public void setActivity(Activity activity) {
         this.activity = activity;
     }
 
@@ -71,12 +74,14 @@ public class GameView extends View {
                         s = p.placeToken(col);
                     }
 
-                    tokens.add(new TokenView(getCellCenterX(s.getX()), getCellCenterY(s.getY()), (int) cellLength / 3, strColor));
-                    if(World.getInstance().checkVictory(s)){
-                        activity.popupWIn(p);
-                    }
-                    if(p.getLevel().equals(Level.NO) && !Player.players.get(1).getLevel().equals(Level.NO)){
-                        onTouch(v, event);
+                    if(s != null){
+                        tokens.add(new TokenView(getCellCenterX(s.getX()), getCellCenterY(s.getY()), (int) cellLength / 3, strColor));
+                        if(World.getInstance().checkVictory(s)){
+                            ((GameActivty) activity).popupWin(p);
+                        }
+                        if(p.getLevel().equals(Level.NO) && !Player.players.get(1).getLevel().equals(Level.NO)){
+                            onTouch(v, event);
+                        }
                     }
                 }
                 return true;

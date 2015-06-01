@@ -7,19 +7,25 @@
               android:id="@+id/layout">
 
     <Button
-            android:layout_width="320dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="SINGLE PLAYER"
-            android:id="@+id/btnSingle" android:layout_gravity="center_horizontal" android:layout_weight="0.08"/>
+            android:alpha="0.7"
+            android:id="@+id/btnSingle" android:layout_gravity="center_horizontal" android:layout_weight="0.20"
+            android:textSize="28dp"/>
     <Button
-        android:layout_width="320dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="MULTIPLAYER"
-        android:id="@+id/btnMulti" android:layout_gravity="center_horizontal" android:layout_weight="0.08"/>
+        android:alpha="0.7"
+        android:textSize="28dp"
+        android:id="@+id/btnMulti" android:layout_gravity="center_horizontal" android:layout_weight="0.20"/>
     <Button
-        android:layout_width="320dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="SETTINGS"
-        android:id="@+id/btnSettings" android:layout_gravity="center_horizontal" android:layout_weight="0.08"/>
+        android:alpha="0.7"
+        android:textSize="28dp"
+        android:id="@+id/btnSettings" android:layout_gravity="center_horizontal" android:layout_weight="0.10"/>
 </LinearLayout>
 

@@ -1,6 +1,8 @@
 package com.epsi.puissance4.models;
 
 
+import java.util.ArrayList;
+
 public class World implements Cloneable{
 
     private static World instance;
@@ -98,13 +100,10 @@ public class World implements Cloneable{
         int y = 0;
         Space currentSpace = World.getInstance().spaces[x][y];
         if (!currentSpace.isAvailable()) {
-
             while (!currentSpace.isAvailable() && y < height-1) {
                 currentSpace = this.getNextSpace(currentSpace);
                 y++;
             }
-
-            return currentSpace;
         }
         return currentSpace;
     }
@@ -184,6 +183,6 @@ public class World implements Cloneable{
 
     public static void renew(){
         instance = new World(7,6);
-        new Computer(Color.YELLOW,new Player(Color.RED));
+        Player.players = new ArrayList<Player>();
     }
 }
