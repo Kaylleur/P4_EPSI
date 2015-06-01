@@ -17,8 +17,6 @@ public class Player {
         initTokens(color);
     }
 
-    public Player() {}
-
     public void initTokens(Color color){
         for (int i=0; i < 21;i++){
             Token token = new Token(color,this);

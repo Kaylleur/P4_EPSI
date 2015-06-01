@@ -8,6 +8,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import com.epsi.puissance4.R;
+import com.epsi.puissance4.models.Color;
+import com.epsi.puissance4.models.Computer;
+import com.epsi.puissance4.models.Player;
+import com.epsi.puissance4.models.World;
 import com.epsi.puissance4.views.GameView;
 
 public class SoloActivity extends Activity implements View.OnClickListener{
@@ -25,7 +29,8 @@ public class SoloActivity extends Activity implements View.OnClickListener{
         gameView = (GameView) findViewById(R.id.gameView);
         btnLeave = (Button)findViewById(R.id.btnLeave);
         btnLeave.setOnClickListener(this);
-
+        World.renew();
+        new Computer(Color.YELLOW,new Player(Color.RED));
     }
 
 
