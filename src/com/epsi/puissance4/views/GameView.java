@@ -6,7 +6,6 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import com.epsi.puissance4.activities.SoloActivity;
@@ -74,10 +73,13 @@ public class GameView extends View {
                     }else{
                         s = p.placeToken(col);
                     }
-                    Log.d("coordonnées du point  :", "{"+s.getX()+";"+s.getY()+"}");
+
                     tokens.add(new TokenView(getCellCenterX(s.getX()), getCellCenterY(s.getY()), (int) cellLength / 3, strColor));
                     if(World.getInstance().checkVictory(s)){
-                        activity.popupWIn();
+                        activity.popupWIn(p);
+                    }
+                    if(!p.getClass().equals(Computer.class)){
+                        this.onTouch(v, event);
                     }
                 }
                 return true;
