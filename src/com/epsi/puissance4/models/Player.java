@@ -8,20 +8,26 @@ public class Player {
     private Integer id;
     private String pseudo;
     private Level level = Level.NO;
+    private Color color;
     protected List<Token> tokens = new ArrayList<Token>();
 
     public Player(Color color) {
         players.add(this);
         this.id = players.size();
-        this.pseudo = "Player "+id;
-        initTokens(color);
+        this.pseudo = "Player "+color.name();
+        this.color = color;
+        initTokens();
     }
 
-    public void initTokens(Color color){
+    public void initTokens(){
         for (int i=0; i < 21;i++){
-            Token token = new Token(color,this);
+            Token token = new Token(this);
             tokens.add(token);
         }
+    }
+
+    public Color getColor() {
+        return color;
     }
 
     public Level getLevel() {
