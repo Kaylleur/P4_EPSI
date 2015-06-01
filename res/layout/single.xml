@@ -17,11 +17,11 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" android:weightSum="1">
-        <Button
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Leave the game"
-                android:id="@+id/btnLeave"/>
     </LinearLayout>
+    <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Leave the game"
+            android:id="@+id/btnLeave"/>
 </LinearLayout>

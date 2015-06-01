@@ -1,13 +1,12 @@
 package com.epsi.puissance4.views;
 
 import android.content.Context;
-import android.media.MediaPlayer;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.graphics.*;
-import com.epsi.puissance4.R;
 
 import java.util.LinkedList;
 
@@ -16,6 +15,7 @@ public class GameView extends View {
     Paint paintGrid = new Paint();
     DisplayMetrics metrics = this.getContext().getResources().getDisplayMetrics();
     int widthScreen = metrics.widthPixels;
+    int heightScreen=metrics.heightPixels;
     int rowNumber = 6;
     int colNumber = 7;
     float cellLength = widthScreen /colNumber;
@@ -49,6 +49,7 @@ public class GameView extends View {
                     strColor = "yellow";
                 }
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    Log.d("Info",col+"/"+row);
                     tokens.add(new TokenView(getCellCenterX(col), getCellCenterY(row), (int) cellLength / 3, strColor));
                 }
 
@@ -90,7 +91,7 @@ public class GameView extends View {
         return colNum;
     }
     private int getRowFromPosition(int posY){
-        int rowNum = (int) (posY/ cellLength);
+        int rowNum = (int) ((heightScreen-gameHeight-posY)/ cellLength);
         return rowNum;
     }
 

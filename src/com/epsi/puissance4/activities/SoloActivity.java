@@ -57,14 +57,13 @@ public class SoloActivity extends Activity implements View.OnClickListener{
                 AlertDialog alert = builderLeave.create();
                 alert.show();
                 ringtone();
-
                 break;
         }
 
     }
 
     private void popupWIn(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(getBaseContext());
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setMessage("Congratulations! You win, play again ?");
         builder.setCancelable(true);
         builder.setPositiveButton("Yes",
@@ -87,6 +86,7 @@ public class SoloActivity extends Activity implements View.OnClickListener{
         alert.show();
         ringtone();
     }
+
     public void ringtone(){
         try {
             Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
