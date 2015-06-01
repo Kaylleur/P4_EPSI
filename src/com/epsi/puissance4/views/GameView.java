@@ -9,10 +9,7 @@ import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
 import com.epsi.puissance4.activities.SoloActivity;
-import com.epsi.puissance4.models.Computer;
-import com.epsi.puissance4.models.Player;
-import com.epsi.puissance4.models.Space;
-import com.epsi.puissance4.models.World;
+import com.epsi.puissance4.models.*;
 
 import java.util.LinkedList;
 
@@ -78,7 +75,7 @@ public class GameView extends View {
                     if(World.getInstance().checkVictory(s)){
                         activity.popupWIn(p);
                     }
-                    if(!p.getClass().equals(Computer.class)){
+                    if(p.getLevel().equals(Level.NO) && !Player.players.get(1).getLevel().equals(Level.NO)){
                         this.onTouch(v, event);
                     }
                 }
